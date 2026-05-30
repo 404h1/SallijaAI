@@ -25,11 +25,11 @@
   --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.09);
 
-  /* 브랜드 — 인디고 */
-  --color-primary:       #5B5BD6;
-  --color-primary-dark:  #4338CA;
-  --color-primary-light: rgba(91, 91, 214, 0.13);
-  --color-primary-tint:  rgba(91, 91, 214, 0.05);
+  /* 브랜드 — 인디고 -> Bleu ciel */
+  --color-primary:       #93b2f8;
+  --color-primary-dark:  #7093e0;
+  --color-primary-light: rgba(147, 178, 248, 0.13);
+  --color-primary-tint:  rgba(147, 178, 248, 0.05);
 
   /* 배경·서피스·보더 */
   --color-bg:            #F5F5FA;
@@ -51,17 +51,19 @@
   --color-success:    #059669;
   --color-success-bg: rgba(5, 150, 105, 0.08);
 
-  /* 경고 */
-  --color-warning:    #D97706;
-  --color-warning-bg: rgba(217, 119, 6, 0.08);
+  /* 경고 (Butter yellow) */
+  --color-warning:    #fbedb0;
+  --color-warning-dark: #e0d08a;
+  --color-warning-bg: rgba(251, 237, 176, 0.2);
+  --color-warning-text: #8c761e;
 
   /* 3축 컬러 (A: 매출 / B: 비용 / C: 위험) */
   --axis-a:    #10B981;
   --axis-a-bg: rgba(16, 185, 129, 0.10);
-  --axis-b:    #3B82F6;
-  --axis-b-bg: rgba(59, 130, 246, 0.10);
-  --axis-c:    #F59E0B;
-  --axis-c-bg: rgba(245, 158, 11, 0.10);
+  --axis-b:    #93b2f8;
+  --axis-b-bg: rgba(147, 178, 248, 0.10);
+  --axis-c:    #fbedb0;
+  --axis-c-bg: rgba(251, 237, 176, 0.20);
 
   /* 스코프 배지 */
   --scope-store:        #5B5BD6;

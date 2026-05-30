@@ -2,8 +2,8 @@
 // 원칙: 뒤에선 8개 다 돌고, 앞에선 핵심만. (master_design_v2 §0)
 
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { ChevronDown, X, TrendingUp } from 'lucide-react';
 import AppShell from '../../components/layout/AppShell';
 import DiagnosisCard from '../../components/domain/DiagnosisCard';
 import { LoadingState, ErrorState, EmptyState, SkeletonCard } from '../../components/common/States';
@@ -20,6 +20,13 @@ export default function DashboardPage() {
   const { results, priorityQueue, riskScore, riskLabel, axisSummary, loading, error, lastRunAt, runDiagnosis } =
     useDiagnosis();
   const [showAll, setShowAll] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [showPopup, setShowPopup] = useState(searchParams.get('showPopup') === 'true');
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    setSearchParams({}); // remove query param
+  };
 
   // 진단 결과 없으면 자동 실행
   useEffect(() => {
@@ -71,6 +78,32 @@ export default function DashboardPage() {
 
   return (
     <AppShell header={<Brand />}>
+      {/* 분석 보고서 유도 팝업 */}
+      {showPopup && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popupCard}>
+            <button className={styles.popupClose} onClick={handleClosePopup}>
+              <X size={20} />
+            </button>
+            <div className={styles.popupIcon}>
+              <TrendingUp size={32} color="white" />
+            </div>
+            <h2>분석 보고서 1장으로<br/>위기를 기회로 만드세요!</h2>
+            <div className={styles.popupStory}>
+              <p><strong>🔥 영등포 B치킨집 사장님</strong></p>
+              <p className="text-muted">"살리자 AI 분석 보고서를 받고 인건비 구조를 바꿨더니, 한 달 만에 적자에서 <strong>영업이익률 8%</strong>로 돌아섰어요!"</p>
+            </div>
+            <p className={styles.popupDesc}>사장님의 매출과 비용 자료만 올려주시면,<br/>나머지는 AI가 알아서 분석해 드립니다.</p>
+            <button 
+              className={styles.popupBtn} 
+              onClick={() => navigate('/setup/sales')}
+            >
+              분석을 위해 데이터 연동하기
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className={styles.content}>
         {/* 위험 스코어 + 가게명 */}
         <section className={styles.hero}>

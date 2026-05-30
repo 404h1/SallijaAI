@@ -6,6 +6,13 @@ import { StoreProfileProvider } from './context/StoreProfileContext';
 import { ActionProvider } from './context/ActionContext';
 import { DiagnosisProvider } from './context/DiagnosisContext';
 
+import LandingPage from './pages/Auth/LandingPage';
+import SignUpPage from './pages/Auth/SignUpPage';
+import BasicInfoPage from './pages/Setup/BasicInfoPage';
+import SalesUploadPage from './pages/Setup/SalesUploadPage';
+import CostsUploadPage from './pages/Setup/CostsUploadPage';
+import ConfirmPage from './pages/Setup/ConfirmPage';
+
 import OnboardingPage from './pages/Onboarding/OnboardingPage';
 import DashboardPage from './pages/Dashboard/DashboardPage';
 import DiagnosisPage from './pages/Diagnosis/DiagnosisPage';
@@ -22,7 +29,13 @@ export default function App() {
         <ActionProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Navigate to="/onboarding" replace />} />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/setup/basic" element={<BasicInfoPage />} />
+              <Route path="/setup/sales" element={<SalesUploadPage />} />
+              <Route path="/setup/costs" element={<CostsUploadPage />} />
+              <Route path="/setup/confirm" element={<ConfirmPage />} />
+              
               <Route path="/onboarding" element={<OnboardingPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/diagnosis/:moduleId" element={<DiagnosisPage />} />
