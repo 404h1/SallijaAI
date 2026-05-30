@@ -1,0 +1,209 @@
+/* # v1. 정책자금 매칭 (F5) */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+.lead {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-sub);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.ineligible {
+  opacity: 0.72;
+}
+
+.cardHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  text-align: left;
+  padding: var(--space-4);
+}
+.headMain {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.headTop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.matchBadge {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-primary);
+  background: var(--color-primary-tint);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+.eligible {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-success);
+  background: var(--color-success-bg);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+.notEligible {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  background: var(--color-border);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+.dday {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-text-sub);
+  background: var(--color-bg);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+.ddayUrgent {
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
+}
+.title {
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+.org {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+}
+.flip {
+  transform: rotate(180deg);
+}
+
+/* 상세 */
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: 0 var(--space-4) var(--space-4);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}
+.specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.specs div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.specs dt {
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+}
+.specs dd {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.subLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--color-text-sub);
+  margin-bottom: 6px;
+}
+.reasons ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  list-style: none;
+}
+.reasons li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text-sub);
+}
+.reasons li svg {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.docTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.docTag {
+  font-size: 12px;
+  color: var(--color-text-sub);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  padding: 4px 9px;
+  border-radius: var(--radius-sm);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+}
+.applyBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: var(--space-3);
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+}
+.applyBtn:disabled {
+  opacity: 1;
+}
+.appliedBtn {
+  color: var(--color-success);
+  background: var(--color-success-bg);
+}
+.linkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-3) var(--space-4);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+}

@@ -1,0 +1,154 @@
+/* # v1. Step2 — POS OCR 업로더 + 월 선택 */
+
+.monthRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.monthLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-sub);
+}
+
+.monthInput {
+  height: 52px;
+  padding: 0 var(--space-4);
+  font-size: 16px;
+  font-weight: 500;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+}
+.monthInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+/* OCR 업로더 */
+.uploader {
+  border: 1.5px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-primary-tint);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+.uploader:active {
+  border-color: var(--color-primary);
+}
+
+.uploaderIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploaderTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.uploaderDesc {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+/* OCR 진행/결과 배너 */
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.bannerLoading {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+.bannerDone {
+  background: var(--axis-a-bg);
+  color: #0c8064;
+}
+.bannerError {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid var(--color-primary-light);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text-placeholder);
+  font-size: 12px;
+  font-weight: 600;
+  margin: var(--space-1) 0;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* 스켈레톤 (OCR 로딩 중 입력 필드 대체) */
+.skeletonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.skeleton {
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, #eef0f3 25%, #f6f7f9 50%, #eef0f3 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+.skeletonLabel {
+  height: 14px;
+  width: 80px;
+  border-radius: 4px;
+  background: #eef0f3;
+  margin-bottom: var(--space-2);
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

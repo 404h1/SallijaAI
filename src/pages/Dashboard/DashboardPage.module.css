@@ -1,0 +1,197 @@
+/* # v1. 통합 진단 대시보드 */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-4);
+}
+
+/* 브랜드 헤더 */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--header-height);
+  padding: 0 var(--space-4);
+}
+.brandMark {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+}
+.brandName {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+.brandName em {
+  font-style: normal;
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+/* 히어로: 가게명 + 위험 게이지 */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.heroLeft {
+  min-width: 0;
+}
+.heroStore {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.heroSub {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.riskGauge {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 3px solid;
+}
+.riskScore {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.riskLabel {
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 3px;
+}
+.risk_critical { border-color: var(--color-danger); color: var(--color-danger); background: var(--color-danger-bg); }
+.risk_high { border-color: var(--color-warning); color: var(--color-warning); background: var(--color-warning-bg); }
+.risk_medium { border-color: #F59E0B; color: #B45309; background: rgba(245, 158, 11, 0.08); }
+.risk_low { border-color: var(--color-success); color: var(--color-success); background: var(--color-success-bg); }
+
+/* 3축 요약 */
+.axisSummary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+.axisItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.axisLabel {
+  flex-shrink: 0;
+  width: 64px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.axisTrack {
+  flex: 1;
+  height: 8px;
+  background: var(--color-bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.axisFill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+/* 우선순위 큐 */
+.queue {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.queueHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.queueTitle {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+.queueCount {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.moreBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  padding: var(--space-3);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+.moreBtn:active {
+  background: var(--color-bg);
+}
+.flip {
+  transform: rotate(180deg);
+}
+
+/* 스켈레톤 래퍼 */
+.skeletonWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+.primaryBtn {
+  padding: var(--space-3) var(--space-5);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-primary);
+  border-radius: var(--radius-lg);
+}
+.primaryBtn:active {
+  background: var(--color-primary-dark);
+}

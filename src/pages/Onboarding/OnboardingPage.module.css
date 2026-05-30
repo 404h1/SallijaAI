@@ -1,0 +1,172 @@
+/* # v1. 온보딩 페이지 레이아웃 */
+
+.page {
+  min-height: 100dvh;
+  background: var(--color-bg);
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--app-max-width);
+  background: var(--color-surface);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-md);
+}
+
+/* 헤더 */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-surface);
+  padding: env(safe-area-inset-top) var(--space-5) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--header-height);
+}
+
+.brandMark {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--color-primary), #4d8bff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.brandName {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.brandName em {
+  color: var(--color-primary);
+  font-style: normal;
+}
+
+.indicator {
+  padding: var(--space-3) 0 var(--space-4);
+}
+
+/* 본문 */
+.body {
+  flex: 1;
+  padding: var(--space-6) var(--space-5);
+  display: flex;
+  flex-direction: column;
+}
+
+.stepHead {
+  margin-bottom: var(--space-6);
+}
+
+.stepTitle {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.stepDesc {
+  margin-top: var(--space-2);
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* 애니메이션 스텝 전환 */
+.animIn {
+  animation: slideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 하단 네비 */
+.footer {
+  position: sticky;
+  bottom: 0;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-5) calc(var(--space-4) + env(safe-area-inset-bottom));
+  display: flex;
+  gap: var(--space-3);
+}
+
+.btn {
+  height: 54px;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  transition: transform 0.1s, background 0.15s, opacity 0.15s;
+}
+.btn:active {
+  transform: scale(0.985);
+}
+
+.btnPrimary {
+  flex: 1;
+  background: var(--color-primary);
+  color: #fff;
+}
+.btnPrimary:disabled {
+  background: var(--color-border-strong);
+  color: #fff;
+}
+
+.btnGhost {
+  flex: 0 0 auto;
+  padding: 0 var(--space-5);
+  background: var(--color-bg);
+  color: var(--color-text-sub);
+}
+
+.btnText {
+  background: none;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  align-self: center;
+  margin-top: var(--space-4);
+  padding: var(--space-2);
+}
+
+/* Loader 아이콘 회전 */
+.spin {
+  animation: spinAnim 0.7s linear infinite;
+}
+@keyframes spinAnim {
+  to { transform: rotate(360deg); }
+}

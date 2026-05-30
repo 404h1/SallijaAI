@@ -1,0 +1,156 @@
+/* # v1. 진단 카드 */
+
+.card {
+  width: 100%;
+  text-align: left;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: transform 0.12s, box-shadow 0.15s;
+}
+.card:active {
+  transform: scale(0.99);
+}
+.card.expanded {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-sm);
+  gap: var(--space-3);
+}
+
+/* 상단 */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.modInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.modName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  white-space: nowrap;
+}
+
+.risk {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+.risk.critical { color: var(--color-danger); background: var(--color-danger-bg); }
+.risk.high { color: var(--color-warning); background: var(--color-warning-bg); }
+.risk.medium { color: #B45309; background: rgba(245, 158, 11, 0.08); }
+.risk.low { color: var(--color-success); background: var(--color-success-bg); }
+
+/* 헤드라인 */
+.headline {
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.detail {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--color-text-sub);
+}
+
+/* 메트릭 미리보기 */
+.metricRow {
+  display: flex;
+  gap: var(--space-2);
+}
+.miniMetric {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3) var(--space-2);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+.miniValue {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.miniValue em {
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
+  margin-left: 1px;
+}
+.miniValue.good { color: var(--color-success); }
+.miniValue.bad { color: var(--color-danger); }
+.miniValue.warn { color: var(--color-warning); }
+.miniValue.neutral { color: var(--color-text); }
+.miniLabel {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.3;
+}
+
+/* 처방 */
+.prescription {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-text-sub);
+  background: var(--color-primary-tint);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+}
+.rxTag {
+  flex-shrink: 0;
+  font-size: 10.5px;
+  font-weight: 800;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  margin-top: 1px;
+}
+
+/* 하단 */
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
