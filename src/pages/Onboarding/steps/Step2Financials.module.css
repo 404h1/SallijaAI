@@ -1,4 +1,17 @@
-/* # v1. Step2 — POS OCR 업로더 + 월 선택 */
+/* Step2Financials.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.initialState {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  animation: fadeIn 0.3s ease;
+}
 
 .monthRow {
   display: flex;
@@ -7,148 +20,219 @@
 }
 
 .monthLabel {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-text-sub);
-}
-
-.monthInput {
-  height: 52px;
-  padding: 0 var(--space-4);
-  font-size: 16px;
-  font-weight: 500;
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-border-strong);
-  border-radius: var(--radius-md);
-  color: var(--color-text);
-}
-.monthInput:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-primary-light);
-}
-
-/* OCR 업로더 */
-.uploader {
-  border: 1.5px dashed var(--color-border-strong);
-  border-radius: var(--radius-md);
-  background: var(--color-primary-tint);
-  padding: var(--space-5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
-  text-align: center;
-  transition: border-color 0.15s, background 0.15s;
-}
-.uploader:active {
-  border-color: var(--color-primary);
-}
-
-.uploaderIcon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-full);
-  background: var(--color-primary-light);
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.uploaderTitle {
-  font-size: 15px;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-text);
 }
 
-.uploaderDesc {
-  font-size: 12.5px;
-  color: var(--color-text-muted);
-  line-height: 1.5;
+.monthInput {
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  outline: none;
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: border-color 0.2s;
+}
+
+.monthInput:focus {
+  border-color: var(--color-primary);
+}
+
+.uploadZone {
+  background: var(--color-surface);
+  border: 2px dashed var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.uploadZone:hover {
+  background: var(--color-primary-tint);
+}
+
+.uploadIconWrap {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+}
+
+.uploadZone h3 {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.uploadZone p {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  margin: 0;
 }
 
 .hiddenInput {
   display: none;
 }
 
-/* OCR 진행/결과 배너 */
-.banner {
+.manualBtn {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-md);
-  font-size: 13.5px;
-  font-weight: 600;
-}
-.bannerLoading {
-  background: var(--color-primary-light);
-  color: var(--color-primary-dark);
-}
-.bannerDone {
-  background: var(--axis-a-bg);
-  color: #0c8064;
-}
-.bannerError {
-  background: var(--color-danger-bg);
-  color: var(--color-danger);
+  justify-content: center;
+  gap: var(--space-2);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  padding: var(--space-3);
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-.spinner {
-  width: 18px;
-  height: 18px;
-  border: 2.5px solid var(--color-primary-light);
-  border-top-color: var(--color-primary);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  flex-shrink: 0;
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.divider {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  color: var(--color-text-placeholder);
-  font-size: 12px;
-  font-weight: 600;
-  margin: var(--space-1) 0;
-}
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--color-border);
-}
-
-/* 스켈레톤 (OCR 로딩 중 입력 필드 대체) */
-.skeletonGroup {
+/* 2. 스캔 상태 (애니메이션) */
+.scanContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6) 0;
+  gap: var(--space-4);
 }
-.skeleton {
-  height: 52px;
-  border-radius: var(--radius-md);
-  background: linear-gradient(90deg, #eef0f3 25%, #f6f7f9 50%, #eef0f3 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.2s infinite;
-}
-.skeletonLabel {
-  height: 14px;
-  width: 80px;
+
+.receiptMock {
+  width: 200px;
+  height: 280px;
+  background: #fff;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  background: #eef0f3;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.receiptHeader {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 8px;
+}
+
+.receiptLines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.line {
+  height: 6px;
+  background: #eee;
+  border-radius: 4px;
+  width: 100%;
+}
+.line:nth-child(2) { width: 80%; }
+.line:nth-child(3) { width: 60%; }
+
+.scanLine {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: rgba(147, 178, 248, 0.8);
+  box-shadow: 0 0 10px rgba(147, 178, 248, 0.8);
+  animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  50% { top: 100%; }
+  100% { top: 0; }
+}
+
+.boundingBox {
+  position: absolute;
+  border: 2px solid var(--color-primary);
+  background: rgba(147, 178, 248, 0.2);
+  color: var(--color-primary-dark);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 4px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: popIn 0.3s forwards;
+}
+
+@keyframes popIn {
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+.box1 { top: 60px; left: 16px; right: 16px; animation-delay: 0.2s; }
+.box2 { top: 100px; left: 16px; right: 40px; animation-delay: 0.6s; }
+.box3 { top: 140px; left: 16px; right: 20px; animation-delay: 1.0s; }
+
+.scanText {
+  font-weight: 700;
+  color: var(--color-primary);
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* 3. 폼 상태 */
+.formState {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.animFadeIn {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.doneBanner {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.9rem;
+  font-weight: 700;
   margin-bottom: var(--space-2);
 }
-@keyframes shimmer {
-  to {
-    background-position: -200% 0;
-  }
+
+/* 확인된 항목 하이라이트 (명도/채도 상승) */
+.highlightWrap {
+  position: relative;
+  border-radius: var(--radius-md);
+  background: var(--color-warning-bg);
+  padding: var(--space-2);
+  box-shadow: 0 0 0 2px var(--color-warning);
+  animation: highlightGlow 1.5s ease;
+}
+
+@keyframes highlightGlow {
+  0% { box-shadow: 0 0 0 4px rgba(251, 237, 176, 0.8); }
+  100% { box-shadow: 0 0 0 2px var(--color-warning); }
 }
