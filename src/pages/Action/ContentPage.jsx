@@ -1,7 +1,7 @@
 // # v1. 콘텐츠 생성 스튜디오 (F7) — 채널 선택 → 초안 생성 → 저장. 처방을 글로 변환.
 
 import { useState } from 'react';
-import { Instagram, FileText, MapPin, Sparkles, Copy, Check, Trash2 } from 'lucide-react';
+import { Image as ImageIcon, FileText, MapPin, Sparkles, Copy, Check, Trash2 } from 'lucide-react';
 import AppShell from '../../components/layout/AppShell';
 import PageHeader from '../../components/layout/PageHeader';
 import { EmptyState } from '../../components/common/States';
@@ -10,7 +10,7 @@ import { useActions } from '../../context/ActionContext';
 import styles from './ContentPage.module.css';
 
 const CHANNELS = [
-  { id: 'instagram', label: '인스타그램', icon: Instagram },
+  { id: 'instagram', label: '인스타그램',    icon: ImageIcon, },
   { id: 'blog', label: '블로그', icon: FileText },
   { id: 'place', label: '네이버 플레이스', icon: MapPin },
 ];

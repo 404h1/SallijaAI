@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { CheckSquare, ArrowRight, AlertTriangle, Calendar, TrendingDown } from 'lucide-react';
 import AppShell from '../../components/layout/AppShell';
 import PageHeader from '../../components/layout/PageHeader';
-import { useAction } from '../../context/ActionContext';
+import { useActions } from '../../context/ActionContext';
 import styles from './PlanPage.module.css';
 
 const MOCK_PLANS = [
@@ -37,7 +37,7 @@ const MOCK_PLANS = [
 
 export default function PlanPage() {
   const navigate = useNavigate();
-  const { savedPlans } = useAction();
+  const { savedPlans } = useActions();
   const [plans, setPlans] = useState(MOCK_PLANS);
 
   const toggleItem = (planId, itemIndex) => {
