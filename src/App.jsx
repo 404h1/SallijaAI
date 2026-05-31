@@ -6,6 +6,7 @@ import { StoreProfileProvider } from './context/StoreProfileContext';
 import { ActionProvider } from './context/ActionContext';
 import { DiagnosisProvider } from './context/DiagnosisContext';
 
+import SplashPage from './pages/Splash/SplashPage';
 import LandingPage from './pages/Auth/LandingPage';
 import SignUpPage from './pages/Auth/SignUpPage';
 import BasicInfoPage from './pages/Setup/BasicInfoPage';
@@ -29,7 +30,8 @@ export default function App() {
         <ActionProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<LandingPage />} />
+              <Route path="/" element={<SplashPage />} />
+              <Route path="/landing" element={<LandingPage />} />
               <Route path="/signup" element={<SignUpPage />} />
               <Route path="/setup/basic" element={<BasicInfoPage />} />
               <Route path="/setup/sales" element={<SalesUploadPage />} />
