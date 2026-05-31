@@ -67,3 +67,25 @@
   min-width: 40px;
   justify-content: flex-end;
 }
+
+/* 처음으로(대시보드) 버튼 */
+.homeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 34px;
+  padding: 0 11px 0 9px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-tint);
+  color: var(--color-primary-dark);
+  font-size: 12.5px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: transform 0.1s;
+}
+.homeBtn:active {
+  transform: scale(0.95);
+}
+.homeLabel {
+  white-space: nowrap;
+}
