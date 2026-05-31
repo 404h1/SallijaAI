@@ -1,0 +1,416 @@
+.appContainer {
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--kakao-bg);
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8px;
+  background-color: var(--kakao-bg);
+  z-index: 10;
+}
+
+.headerLeft, .headerRight {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.iconBtn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+.chatName {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+/* Chat Area */
+.chatArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dateDivider {
+  align-self: center;
+  background: rgba(0,0,0,0.1);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.messageRow {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.rowUser {
+  justify-content: flex-end;
+}
+
+.rowAi {
+  justify-content: flex-start;
+}
+
+.profilePic {
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.profilePic img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.messageContent {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+}
+
+.senderName {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 4px;
+  margin-left: 4px;
+}
+
+.bubbleWrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.time {
+  font-size: 11px;
+  color: #555;
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.bubble {
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  border-radius: 14px;
+  word-break: break-all;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.bubbleAi {
+  background-color: var(--bubble-bg-ai);
+  border-top-left-radius: 4px;
+}
+
+.bubbleUser {
+  background-color: var(--bubble-bg-user);
+  border-top-right-radius: 4px;
+}
+
+/* Alimtalk Card Style */
+.alimtalk {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alimtalkHeader {
+  display: flex;
+  margin-bottom: -4px;
+}
+
+.alimtalkBadge {
+  background: #ffeded;
+  color: #ff3b3b;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.alimtalkBadgeSuccess {
+  background: #e3f9e5;
+  color: #0b9e28;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.alimtalkBadgeInfo {
+  background: #e8effd;
+  color: #2f63e0;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* 오늘의 브리핑 리스트 */
+.briefList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 2px;
+}
+.briefItem {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.briefNum {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: #2f63e0;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.briefBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.briefBody strong {
+  font-size: 13px;
+  color: #111;
+  font-weight: 700;
+}
+.briefBody span {
+  font-size: 12.5px;
+  color: #555;
+  line-height: 1.45;
+}
+.briefBody b { color: #2f63e0; }
+
+/* 빠른 응답(추천) 버튼 */
+.quickReplies {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  margin-left: 4px;
+  align-items: flex-start;
+}
+.quickBtn {
+  background: #fff;
+  border: 1.5px solid #2f63e0;
+  color: #2f63e0;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 14px;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.quickBtn:active { background: #f0f5ff; }
+
+.alimtalkTitle {
+  font-size: 15px;
+  color: #111;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.alimtalkDesc {
+  font-size: 13px;
+  color: #444;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.btnGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.actionBtnDark {
+  display: block;
+  text-align: center;
+  background: #391b1b;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #fee500;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.actionBtnLight {
+  display: block;
+  text-align: center;
+  background: #f2f2f2;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.normalBubble {
+  white-space: pre-wrap;
+}
+
+.noPadding {
+  padding: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.imageBubble {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.mockReceipt {
+  background: #fff;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.receiptHeader {
+  background: #eee;
+  padding: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+.receiptBody {
+  padding: 16px;
+  font-family: monospace;
+  font-size: 12px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.alimtalkDesc {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+}
+
+.alimtalkBtn {
+  display: block;
+  text-align: center;
+  background: #f2f2f2;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.normalBubble {
+  white-space: pre-wrap;
+}
+
+/* Input Area */
+.inputArea {
+  background: white;
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+  gap: 8px;
+  border-top: 1px solid var(--kakao-border);
+}
+
+.attachBtn {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.inputForm {
+  flex: 1;
+  background: var(--kakao-gray);
+  border: 1px solid var(--kakao-border);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  min-height: 44px;
+}
+
+.textField {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 8px;
+  font-size: 15px;
+}
+
+.inputActions {
+  display: flex;
+  gap: 2px;
+}
+
+.actionBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sendBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--kakao-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+}

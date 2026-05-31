@@ -1,0 +1,39 @@
+:root {
+  --kakao-bg: #b2c7d9;
+  --kakao-yellow: #fee500;
+  --kakao-yellow-dark: #f8e000;
+  --kakao-dark: #391b1b;
+  --kakao-gray: #f5f5f5;
+  --kakao-border: #e2e2e2;
+  --text-main: #333333;
+  --text-sub: #888888;
+  --bubble-bg-ai: #ffffff;
+  --bubble-bg-user: #fee500;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  background-color: var(--kakao-bg);
+  color: var(--text-main);
+  overflow: hidden;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
