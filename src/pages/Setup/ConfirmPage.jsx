@@ -21,8 +21,8 @@ export default function ConfirmPage() {
       inputSource: 'ocr',
     });
     
-    // 상태가 'complete'로 바뀌면서 대시보드로 이동하면 자동 진단이 시작됨
-    navigate('/dashboard');
+    // 상태가 'complete'로 바뀌면서 홈으로 이동 (가입 완료 팝업 트리거)
+    navigate('/home?popup=welcome');
   };
 
   return (

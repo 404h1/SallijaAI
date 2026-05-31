@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ChevronDown, X, TrendingUp, ChevronRight } from 'lucide-react';
+import { ChevronDown, X, TrendingUp, ChevronRight, Star } from 'lucide-react';
 import AppShell from '../../components/layout/AppShell';
 import DiagnosisCard from '../../components/domain/DiagnosisCard';
 import { LoadingState, ErrorState, EmptyState, SkeletonCard } from '../../components/common/States';
@@ -12,7 +12,46 @@ import { useDiagnosis } from '../../context/DiagnosisContext';
 import { AXES } from '../../config/modules';
 import styles from './DashboardPage.module.css';
 
+import imgChicken from '../../assets/personas/chicken.png';
+import imgCafe from '../../assets/personas/cafe.png';
+import imgKorean from '../../assets/personas/korean.png';
+import imgSalon from '../../assets/personas/salon.png';
+import imgGym from '../../assets/personas/gym.png';
+
 const EXPANDED_COUNT = 2;
+
+const MOCK_REVIEWS = [
+  {
+    id: 1,
+    persona: "🍗 영등포 B치킨집",
+    avatar: imgChicken,
+    text: "운전자금이 4개월밖에 안 남았다는 걸 먼저 알려줬어요. 정책자금 신청하고 인건비 구조 바꿨더니 한 달 만에 흑자 전환했습니다."
+  },
+  {
+    id: 2,
+    persona: "☕ 마포구 카페 사장",
+    avatar: imgCafe,
+    text: "점심 매출 공백이 심했는데, AI가 브런치 세트 메뉴를 제안해줬어요. 도입 후 바로 월매출 22% 올랐습니다!"
+  },
+  {
+    id: 3,
+    persona: "🍚 강남 백반집 사장",
+    avatar: imgKorean,
+    text: "식자재 원가율이 이렇게 높은지 몰랐어요. 배달 채널을 효율화하고 나서 영업이익률이 무려 8%p나 개선됐습니다."
+  },
+  {
+    id: 4,
+    persona: "✂️ 홍대 미용실 원장",
+    avatar: imgSalon,
+    text: "단골 재방문율이 떨어지는 걸 바로 캐치해주네요. 리뷰 관리 자동화로 네이버 예약이 전월 대비 30% 늘었어요!"
+  },
+  {
+    id: 5,
+    persona: "💪 분당 헬스장 관장",
+    avatar: imgGym,
+    text: "비수기 매출 방어를 위해 전단지 문구를 뽑았는데, PT 문의가 2배나 폭증했습니다. 진짜 최고예요."
+  }
+];
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -22,6 +61,7 @@ export default function DashboardPage() {
   const [showAll, setShowAll] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [popupOpen, setPopupOpen] = useState(searchParams.get('showPopup') === 'true');
+  const [reviewIndex, setReviewIndex] = useState(0);
 
   const closePopup = () => {
     setPopupOpen(false);
@@ -33,6 +73,14 @@ export default function DashboardPage() {
       runDiagnosis();
     }
   }, [status, lastRunAt, loading, runDiagnosis]);
+
+  useEffect(() => {
+    if (!popupOpen) return;
+    const timer = setInterval(() => {
+      setReviewIndex((prev) => (prev + 1) % MOCK_REVIEWS.length);
+    }, 3500); // 3.5초마다 휙휙 넘어감
+    return () => clearInterval(timer);
+  }, [popupOpen]);
 
   // ── 팝업 (position:fixed → early return 영향 없음) ──────────────
   const Popup = popupOpen ? (
@@ -46,14 +94,37 @@ export default function DashboardPage() {
         </div>
         <h2>지금 분석 자료만 올리면<br />무료 보고서를 드려요</h2>
 
-        {/* 성공 사례 */}
-        <div className={styles.popupStory}>
-          <p><strong>🍗 영등포 B치킨집 사장님</strong></p>
-          <p>운전자금이 <strong>4개월</strong>밖에 안 남았다는 걸 살리자 AI가 먼저 알려줬어요. 정책자금 신청하고 인건비 구조 바꿨더니 한 달 만에 <strong>흑자 전환</strong>했습니다.</p>
-        </div>
-        <div className={styles.popupStory} style={{ marginTop: 8 }}>
-          <p><strong>☕ 마포구 카페 사장님</strong></p>
-          <p>점심 매출 공백이 잡히자 <strong>월매출 +22%</strong>. 브런치 세트 하나로 해결됐어요.</p>
+        {/* 성공 사례 (리뷰 스와이프) */}
+        <div className={styles.reviewCarousel}>
+          {MOCK_REVIEWS.map((review, idx) => (
+            <div 
+              key={review.id} 
+              className={`${styles.reviewCard} ${idx === reviewIndex ? styles.active : ''}`}
+            >
+              <div className={styles.reviewHeader}>
+                <div className={styles.reviewProfile}>
+                  <img src={review.avatar} alt="Profile" className={styles.reviewAvatar} />
+                  <strong>{review.persona}</strong>
+                </div>
+                <div className={styles.stars}>
+                  <Star size={14} fill="var(--color-warning)" color="var(--color-warning)" />
+                  <Star size={14} fill="var(--color-warning)" color="var(--color-warning)" />
+                  <Star size={14} fill="var(--color-warning)" color="var(--color-warning)" />
+                  <Star size={14} fill="var(--color-warning)" color="var(--color-warning)" />
+                  <Star size={14} fill="var(--color-warning)" color="var(--color-warning)" />
+                </div>
+              </div>
+              <p className={styles.reviewText}>"{review.text}"</p>
+            </div>
+          ))}
+          <div className={styles.carouselDots}>
+            {MOCK_REVIEWS.map((_, idx) => (
+              <span 
+                key={idx} 
+                className={`${styles.dot} ${idx === reviewIndex ? styles.activeDot : ''}`} 
+              />
+            ))}
+          </div>
         </div>
 
         <p className={styles.popupDesc}>

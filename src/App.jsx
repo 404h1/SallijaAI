@@ -22,6 +22,10 @@ import PolicyPage from './pages/Action/PolicyPage';
 import PlanPage from './pages/Action/PlanPage';
 import HistoryPage from './pages/History/HistoryPage';
 import SettingsPage from './pages/Settings/SettingsPage';
+import MarketRadarPage from './pages/Radar/MarketRadarPage';
+import PerformancePage from './pages/Performance/PerformancePage';
+import HomePage from './pages/Home/HomePage';
+import DataRegistrationPage from './pages/Data/DataRegistrationPage';
 
 export default function App() {
   return (
@@ -39,11 +43,15 @@ export default function App() {
               <Route path="/setup/confirm" element={<ConfirmPage />} />
               
               <Route path="/onboarding" element={<OnboardingPage />} />
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/data" element={<DataRegistrationPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/diagnosis/:moduleId" element={<DiagnosisPage />} />
               <Route path="/action/content" element={<ContentPage />} />
               <Route path="/action/policy" element={<PolicyPage />} />
               <Route path="/action/plan" element={<PlanPage />} />
+              <Route path="/radar" element={<MarketRadarPage />} />
+              <Route path="/performance" element={<PerformancePage />} />
               <Route path="/history" element={<HistoryPage />} />
               <Route path="/settings" element={<SettingsPage />} />
             </Routes>

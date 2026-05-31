@@ -291,20 +291,95 @@
 }
 
 .popupStory {
-  background: var(--color-warning-bg);
-  padding: var(--space-4);
-  border-radius: var(--radius-md);
+  display: none; /* 제거된 기존 스타일 하위 호환 */
+}
+
+/* Review Carousel */
+.reviewCarousel {
+  position: relative;
+  width: 100%;
+  min-height: 140px; /* 고정 높이에서 최소 높이로 변경 */
   margin-bottom: var(--space-4);
+  overflow: hidden;
+}
+
+.reviewCard {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--color-warning-bg);
+  padding: var(--space-4) var(--space-4) calc(var(--space-4) + 16px);
+  border-radius: var(--radius-md);
   text-align: left;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
-.popupStory p {
-  font-size: 0.9rem;
+.reviewCard.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.reviewProfile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.reviewAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.reviewHeader strong {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.reviewText {
+  font-size: 0.95rem;
   line-height: 1.5;
+  color: var(--color-text-sub);
 }
 
-.popupStory strong {
-  color: var(--color-warning-text);
+.carouselDots {
+  position: absolute;
+  bottom: 12px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.1);
+  transition: all 0.3s;
+}
+
+.activeDot {
+  width: 12px;
+  background: var(--color-warning);
+  border-radius: 4px;
 }
 
 .popupDesc {

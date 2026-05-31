@@ -1,0 +1,106 @@
+/* # v2. SideNav 레이아웃 */
+
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background: var(--color-bg);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6) var(--space-4);
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+
+.profileCard {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.profileIcon {
+  font-size: 1.2rem;
+}
+
+.profileName {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.profileMeta {
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  line-height: 1.4;
+}
+
+.navMenu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--color-text-sub);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.navItem:hover {
+  background: var(--color-surface);
+  color: var(--color-primary-dark);
+}
+
+.navItem.active {
+  background: var(--color-primary-dark);
+  color: white;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.navItem.active .badge {
+  color: white;
+}
+
+.bottomAction {
+  margin-top: var(--space-6);
+}
+
+.newAnalysisBtn {
+  width: 100%;
+  padding: var(--space-3);
+  background: var(--color-warning);
+  color: var(--color-warning-text);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.newAnalysisBtn:active {
+  transform: translateY(2px);
+}
