@@ -1,5 +1,6 @@
-// # v2. 랜딩 페이지 — hero.png 활용, 성공사례 수치, 카카오 CTA
+// # v3. 랜딩 페이지 — hero.png 활용, 성공사례 수치, 카카오 CTA
 
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, TrendingUp, FileText, ShieldCheck } from 'lucide-react';
 import heroImg from '../../assets/hero.png';
@@ -32,8 +33,27 @@ const CASES = [
   },
 ];
 
+const TICKER_MS = 3200;
+const ANIM_MS   = 440;
+
 export default function LandingPage() {
   const navigate = useNavigate();
+  const [curr, setCurr] = useState(0);
+  const [prev, setPrev] = useState(null);
+  const [switching, setSwitching] = useState(false);
+  const currRef = useRef(0);
+  currRef.current = curr;
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      const next = (currRef.current + 1) % CASES.length;
+      setPrev(currRef.current);
+      setCurr(next);
+      setSwitching(true);
+      setTimeout(() => { setPrev(null); setSwitching(false); }, ANIM_MS + 30);
+    }, TICKER_MS);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <div className={styles.page}>
@@ -68,14 +88,16 @@ export default function LandingPage() {
         ))}
       </section>
 
-      {/* ── 성공 사례 ─────────────────────────── */}
+      {/* ── 성공 사례 — 1칸 아래→위 슉슉 ────── */}
       <section className={styles.cases}>
         <p className={styles.casesLabel}>실제 사장님 이야기</p>
-        <div className={styles.caseList}>
-          {CASES.map((c) => {
+        <div className={styles.caseTrack}>
+          {/* 나가는 카드 (위로 사라짐) */}
+          {prev !== null && (() => {
+            const c = CASES[prev];
             const Icon = c.icon;
             return (
-              <div key={c.name} className={styles.caseCard}>
+              <div key={`prev-${prev}`} className={`${styles.caseCard} ${styles.caseExit}`}>
                 <div className={styles.caseTop}>
                   <span className={styles.caseIcon}><Icon size={16} /></span>
                   <span className={styles.caseName}>{c.name}</span>
@@ -84,7 +106,32 @@ export default function LandingPage() {
                 <p className={styles.caseDesc}>{c.desc}</p>
               </div>
             );
-          })}
+          })()}
+          {/* 들어오는 카드 (아래에서 올라옴) */}
+          {(() => {
+            const c = CASES[curr];
+            const Icon = c.icon;
+            return (
+              <div
+                key={`curr-${curr}`}
+                className={`${styles.caseCard} ${switching ? styles.caseEnter : styles.caseIdle}`}
+              >
+                <div className={styles.caseTop}>
+                  <span className={styles.caseIcon}><Icon size={16} /></span>
+                  <span className={styles.caseName}>{c.name}</span>
+                  <span className={styles.caseResult}>{c.result}</span>
+                </div>
+                <p className={styles.caseDesc}>{c.desc}</p>
+              </div>
+            );
+          })()}
+        </div>
+
+        {/* 진행 점 */}
+        <div className={styles.caseDots}>
+          {CASES.map((_, i) => (
+            <span key={i} className={`${styles.caseDot} ${i === curr ? styles.caseDotOn : ''}`} />
+          ))}
         </div>
       </section>
 

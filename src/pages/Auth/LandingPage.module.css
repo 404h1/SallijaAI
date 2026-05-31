@@ -106,7 +106,7 @@
   color: var(--color-text-muted);
 }
 
-/* 성공 사례 */
+/* 성공 사례 — 1칸 슉슉 ticker */
 .cases {
   padding: var(--space-5) var(--space-5) 0;
   display: flex;
@@ -120,12 +120,18 @@
   color: var(--color-text-muted);
   text-transform: uppercase;
 }
-.caseList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+
+/* 고정 높이 무대 — 카드 하나만 보임 */
+.caseTrack {
+  position: relative;
+  height: 88px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
 }
+
 .caseCard {
+  position: absolute;
+  inset: 0;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -134,6 +140,32 @@
   flex-direction: column;
   gap: 5px;
 }
+
+/* 안정 상태 */
+.caseIdle {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 아래에서 올라오며 진입 */
+.caseEnter {
+  animation: tickerIn 440ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 위로 사라지며 퇴장 */
+.caseExit {
+  animation: tickerOut 380ms cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+@keyframes tickerIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes tickerOut {
+  from { transform: translateY(0);     opacity: 1; }
+  to   { transform: translateY(-100%); opacity: 0; }
+}
+
 .caseTop {
   display: flex;
   align-items: center;
@@ -170,6 +202,26 @@
   color: var(--color-text-muted);
   line-height: 1.5;
   margin: 0;
+}
+
+/* 진행 점 */
+.caseDots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 2px;
+}
+.caseDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-border-strong);
+  transition: all 0.3s;
+}
+.caseDotOn {
+  width: 16px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
 }
 
 /* 하단 CTA */
