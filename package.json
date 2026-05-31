@@ -1,0 +1,8 @@
+{
+  "name": "salija-root",
+  "private": true,
+  "scripts": {
+    "install:app": "npm install --prefix demo/app",
+    "build": "npm install --prefix demo/app && npm run build --prefix demo/app"
+  }
+}
