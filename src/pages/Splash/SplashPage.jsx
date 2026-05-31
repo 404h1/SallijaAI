@@ -4,12 +4,12 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './SplashPage.module.css';
 
-// 살리자/asset 폴더의 사장님 에셋 5장
-import imgCafe from '../../../asset/카페사장님.png';
-import imgFlower from '../../../asset/꽃집사장님.png';
-import imgVeg from '../../../asset/채소가게사장님.png';
-import imgSalon from '../../../asset/미용실원장님.png';
-import imgWood from '../../../asset/목공사아저씨.png';
+// 살리자/asset 폴더의 사장님 에셋 5장 (배경 누끼 처리본)
+import imgCafe from '../../../asset/cut/카페사장님.png';
+import imgFlower from '../../../asset/cut/꽃집사장님.png';
+import imgVeg from '../../../asset/cut/채소가게사장님.png';
+import imgSalon from '../../../asset/cut/미용실원장님.png';
+import imgWood from '../../../asset/cut/목공사아저씨.png';
 
 const OWNERS = [
   { img: imgCafe, name: '카페 사장님' },

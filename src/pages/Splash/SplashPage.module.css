@@ -61,16 +61,15 @@
   width: 220px;
   height: 220px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 .img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* 사각 배경판을 원형으로 부드럽게 페이드 — 네모 끊김 제거 */
-  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 50%, rgba(0, 0, 0, 0) 72%);
-  mask-image: radial-gradient(circle at 50% 45%, #000 50%, rgba(0, 0, 0, 0) 72%);
+  /* 배경 누끼본 — 살짝 그림자로 바닥에 안착 */
+  filter: drop-shadow(0 10px 14px rgba(70, 90, 130, 0.16));
 }
 .name {
   font-size: 14px;
