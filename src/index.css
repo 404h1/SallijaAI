@@ -30,6 +30,8 @@
   --color-primary-dark:  #7093e0;
   --color-primary-light: rgba(147, 178, 248, 0.13);
   --color-primary-tint:  rgba(147, 178, 248, 0.05);
+  /* 입력 완료/활성 시 강조되는 선명 톤 (평소엔 사용 안 함) */
+  --color-primary-vivid: #4570E8;
 
   /* 배경·서피스·보더 */
   --color-bg:            #F5F5FA;
