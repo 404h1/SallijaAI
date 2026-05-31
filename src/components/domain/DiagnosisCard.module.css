@@ -132,6 +132,49 @@
   margin-top: 1px;
 }
 
+/* ── 빠른 액션 버튼 행 ── */
+.actionRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: 2px;
+}
+
+.quickBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: var(--radius-lg);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 0.1s, opacity 0.1s;
+  cursor: pointer;
+  border: none;
+}
+.quickBtn:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+
+/* 첫 번째 액션: 채운 버튼 */
+.quickPrimary {
+  background: var(--color-primary);
+  color: #fff;
+  flex: 1;
+  justify-content: center;
+}
+
+/* 나머지 액션: 외곽선 버튼 */
+.quickGhost {
+  background: var(--color-surface);
+  color: var(--color-text-sub);
+  border: 1px solid var(--color-border-strong) !important;
+  flex: 1;
+  justify-content: center;
+}
+
 /* 하단 */
 .bottom {
   display: flex;

@@ -1,10 +1,17 @@
-// # v1. 진단 카드 — 대시보드 우선순위 큐의 단위. 펼침/접힘 2가지 변형.
+// # v2. 진단 카드 — 확장 카드에 처방 빠른 액션 버튼 인라인 추가
 
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight, AlertTriangle } from 'lucide-react';
+import { ChevronRight, AlertTriangle, Sparkles, FileText, ClipboardList, Phone } from 'lucide-react';
 import { getModule } from '../../config/modules';
 import { AxisChips, ScopeBadge, DataStatusBadge } from '../common/Badges';
 import styles from './DiagnosisCard.module.css';
+
+const ACTION_ICON = {
+  content: Sparkles,
+  policy: FileText,
+  plan: ClipboardList,
+  expert: Phone,
+};
 
 const RISK_META = {
   critical: { label: '심각', cls: 'critical' },
@@ -22,12 +29,19 @@ export default function DiagnosisCard({ result, expanded = false }) {
   const mod = getModule(result.moduleId);
   const risk = RISK_META[result.riskLevel] || RISK_META.low;
 
-  const go = () => navigate(`/diagnosis/${result.moduleId}`);
+  const goDetail = () => navigate(`/diagnosis/${result.moduleId}`);
+
+  // 타깃 있는 액션만 추림
+  const liveActions = result.prescription.actions.filter((a) => a.target);
 
   return (
-    <button
+    // div로 감싸서 내부 button 중첩 문제 방지
+    <div
       className={`${styles.card} ${expanded ? styles.expanded : ''}`}
-      onClick={go}
+      onClick={goDetail}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && goDetail()}
       aria-label={`${mod?.name} 진단 상세`}
     >
       {/* 상단: 모듈명 + 축 + 위험 */}
@@ -45,7 +59,7 @@ export default function DiagnosisCard({ result, expanded = false }) {
       {/* 헤드라인 */}
       <p className={styles.headline}>{result.diagnosis.headline}</p>
 
-      {/* 펼침: 상세 + 메트릭 미리보기 */}
+      {/* 펼침: 상세 + 메트릭 + 처방 + 빠른 액션 */}
       {expanded && (
         <>
           <p className={styles.detail}>{result.diagnosis.detail}</p>
@@ -60,10 +74,31 @@ export default function DiagnosisCard({ result, expanded = false }) {
               </div>
             ))}
           </div>
+
           <div className={styles.prescription}>
             <span className={styles.rxTag}>처방</span>
             {result.prescription.summary}
           </div>
+
+          {/* ── 빠른 액션 버튼 (처방 연결) ── */}
+          {liveActions.length > 0 && (
+            <div className={styles.actionRow} onClick={(e) => e.stopPropagation()}>
+              {liveActions.map((a, i) => {
+                const Icon = ACTION_ICON[a.type] || ChevronRight;
+                const isPrimary = i === 0;
+                return (
+                  <button
+                    key={i}
+                    className={`${styles.quickBtn} ${isPrimary ? styles.quickPrimary : styles.quickGhost}`}
+                    onClick={() => navigate(a.target)}
+                  >
+                    <Icon size={15} />
+                    {a.label}
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </>
       )}
 
@@ -77,6 +112,6 @@ export default function DiagnosisCard({ result, expanded = false }) {
           자세히 <ChevronRight size={15} />
         </span>
       </div>
-    </button>
+    </div>
   );
 }
